@@ -9,6 +9,13 @@
                         </a></h5>
                 </div>
             </div>
+            <form action="{{ route('idea.destroy', $idea->id ) }}" method="POST">
+                @csrf
+                @method('delete')
+            <div>
+                <button class="btn btn-danger btn-sm">Delete</button>
+            </div>
+            </form>
         </div>
     </div>
     <div class="card-body">

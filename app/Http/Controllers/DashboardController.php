@@ -11,7 +11,7 @@ class DashboardController extends Controller
     public function index()
     {
         return view("index",[
-            "ideas" => idea::orderBy('created_at','DESC')->get(),
+            "ideas" => idea::orderBy('created_at','ASC')->paginate(8),
         ]);
     }
 }
