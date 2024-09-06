@@ -10,17 +10,12 @@
                 </div>
             </div>
             <div class="d-flex align-items-center justify-content-between" style="width: 120px;">
-                <!-- Delete Form -->
                 <form action="{{ route('idea.destroy', $idea->id) }}" method="POST" style="margin: 0;">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-danger btn-sm" type="submit">Delete</button>
                 </form>
-
-                <!-- View Link -->
                 <a href="{{ route('idea.show', $idea->id) }}" class="btn btn-primary btn-sm">View</a>
-
-                <!-- Edit Link -->
                 <a href="{{ route('idea.edit', $idea->id) }}" class="btn btn-secondary btn-sm">Edit</a>
             </div>
 
