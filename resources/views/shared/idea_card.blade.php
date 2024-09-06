@@ -9,27 +9,53 @@
                         </a></h5>
                 </div>
             </div>
-            <form action="{{ route('idea.destroy', $idea->id ) }}" method="POST">
-                @csrf
-                @method('delete')
-            <div>
-                <button class="btn btn-danger btn-sm">Delete</button>
+            <div class="d-flex align-items-center justify-content-between" style="width: 120px;">
+                <!-- Delete Form -->
+                <form action="{{ route('idea.destroy', $idea->id) }}" method="POST" style="margin: 0;">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                </form>
+
+                <!-- View Link -->
+                <a href="{{ route('idea.show', $idea->id) }}" class="btn btn-primary btn-sm">View</a>
+
+                <!-- Edit Link -->
+                <a href="{{ route('idea.edit', $idea->id) }}" class="btn btn-secondary btn-sm">Edit</a>
             </div>
-            </form>
+
         </div>
     </div>
     <div class="card-body">
+        @if($editing ?? false)
+        <div class="row">
+            <form action="{{ route('idea.update', ['id' => $idea->id]) }}" method="post">
+                @csrf
+                @method('PUT')
+                <div class="mb-3">
+                    <textarea name="content" class="form-control" id="idea" rows="3">{{ $idea->content }}</textarea>
+                    @error('content')
+                    <span>{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="">
+                    <button type="submit" class="btn btn-dark"> Edit </button>
+                </div>
+            </form>
+        </div>
+        @else
         <p class="fs-6 fw-light text-muted">
-            {{$idea->content}}
+            {{ $idea->content }}
         </p>
+        @endif
         <div class="d-flex justify-content-between">
             <div>
                 <a href="#" class="fw-light nav-link fs-6"> <span class="fas fa-heart me-1">
-                    </span> {{$idea->likes}} </a>
+                    </span> {{ $idea->likes }} </a>
             </div>
             <div>
                 <span class="fs-6 fw-light text-muted"> <span class="fas fa-clock"> </span>
-                    {{$idea->created_at}} </span>
+                    {{ $idea->created_at }} </span>
             </div>
         </div>
         <div>
@@ -39,7 +65,6 @@
             <div>
                 <button class="btn btn-primary btn-sm"> Post Comment </button>
             </div>
-
             <hr>
             <div class="d-flex align-items-start">
                 <img style="width:35px" class="me-2 avatar-sm rounded-circle"
@@ -49,8 +74,7 @@
                     <div class="d-flex justify-content-between">
                         <h6 class="">Luigi
                         </h6>
-                        <small class="fs-6 fw-light text-muted"> 3 hour
-                            ago</small>
+                        <small class="fs-6 fw-light text-muted"> 3 hours ago</small>
                     </div>
                     <p class="fs-6 mt-3 fw-light">
                         this is a comment.
