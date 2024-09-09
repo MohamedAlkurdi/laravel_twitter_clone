@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('ideas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->longText('content');
             $table->unsignedTinyInteger('likes')->default(0);
             $table->timestamps();
