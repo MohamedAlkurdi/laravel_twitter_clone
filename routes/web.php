@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[DashboardController::class, 'index'])->name('dashboard');
 Route::get('/profile',[ProfileController::class, 'index']);
-Route::post('/idea', [ideaController::class, 'store'])->name('idea.create');
+Route::post('', [ideaController::class, 'store'])->name('store');
 Route::get('/idea/{id}', [ideaController::class, 'show'])->name('idea.show');
 Route::delete('/idea/{id}', [ideaController::class, 'destroy'])->name('idea.destroy')->middleware('auth');
 Route::get('/idea/{id}/edit', [ideaController::class, 'edit'])->name('idea.edit')->middleware('auth');
@@ -20,6 +20,9 @@ Route::post('/register', [AuthController::class, 'store']);
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'authenticate']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+// Route::resource('idea', ideaController::class)->except(['index','create','show'])->middleware('auth');
+
 
 
 Route::get('/terms',function(){

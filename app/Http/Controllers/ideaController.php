@@ -33,9 +33,9 @@ class IdeaController extends Controller
     
     public function destroy($id)
     {
-        if(Auth::user()->id !== $id){
-            abort(404);
-        }
+        // if(Auth::user()->id !== $id){
+        //     abort(404);
+        // }
         $idea = Idea::findOrFail($id);
         $idea->delete();
 
@@ -44,9 +44,9 @@ class IdeaController extends Controller
 
     public function edit($id)
     {
-        if(Auth::user()->id !== $id){
-            abort(404);
-        }
+        // if(Auth::user()->id !== $id){
+        //     abort(404);
+        // }
         $idea = Idea::findOrFail($id);
         $editing = true;
 
@@ -55,9 +55,9 @@ class IdeaController extends Controller
 
     public function update($id)
     {
-        if(Auth::user()->id !== $id){
-            abort(404);
-        }
+        // if(Auth::user()->id !== $id){
+        //     abort(404);
+        // }
         request()->validate([
             'content' => 'required|min:5',
         ]);
