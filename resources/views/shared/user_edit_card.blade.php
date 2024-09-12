@@ -3,26 +3,23 @@
         <div class="d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center">
                 <img style="width:150px" class="me-3 avatar-sm rounded-circle"
-                    src="https://api.dicebear.com/6.x/fun-emoji/svg?seed={{ $user->name }}" alt="{{ $user->name }}">
+                    src="https://api.dicebear.com/6.x/fun-emoji/svg?seed={{$user->name}}" alt="{{$user->name}}">
                 <div>
                     @if($editing ?? false)
-                    <input value="{{ $user->name }}" type="text" name="name" class="form-control">
+                    <input value="{{$user->name}}" type="text" name="name" class="form-control">
                     @error('name')
-                    <span class="text-danger fs-6">{{ $message }}</span>
+                    <span class="text-danger fs-6" >{{$message}}</span>
                     @enderror
                     @else
-                    <h3 class="card-title mb-0"><a href="#"> {{ $user->name }} </a></h3>
-                    <span class="fs-6 text-muted">{{ $user->email }}</span>
+                    <h3 class="card-title mb-0"><a href="#"> {{$user->name}}
+                        </a></h3>
+                    <span class="fs-6 text-muted">{{$user->email}}</span>
                     @endif
                 </div>
             </div>
             @if(auth()->id() === $user->id)
             <div>
-                @if($editing ?? false)
-                <a href="{{ route('users.show', $user->id) }}" class="btn btn-secondary btn-sm">View</a>
-                @else
                 <a href="{{ route('users.edit', $user->id) }}" class="btn btn-secondary btn-sm">Edit</a>
-                @endif
             </div>
             @endif
         </div>
@@ -36,12 +33,12 @@
             <h5 class="fs-5"> About : </h5>
             @if($editing ?? false)
             <div class="mb-3">
-                <textarea name="bio" class="form-control" id="bio" rows="3"></textarea>
-                @error('bio')
-                <span class="text-danger fs-6">{{ $message }}</span>
-                @enderror
-            </div>
-            <button class="btn btn-success btn-sm mb-3">Save</button>
+                    <textarea name="bio" class="form-control" id="bio" rows="3"></textarea>
+                    @error('bio')
+                    <span class="text-danger fs-6">{{ $message }}</span>
+                    @enderror
+                </div>
+                <button class="btn btn-success btn-sm mb-3">save</button>
             @else
             <p class="fs-6 fw-light">
                 This book is a treatise on the theory of ethics, very popular during the
@@ -50,15 +47,19 @@
             </p>
             @endif
             <div class="d-flex justify-content-start">
-                <a href="#" class="fw-light nav-link fs-6 me-3"> <span class="fas fa-user me-1"> </span> 0 Followers </a>
-                <a href="#" class="fw-light nav-link fs-6 me-3"> <span class="fas fa-brain me-1"> </span> {{ $user->ideas()->count() }} </a>
-                <a href="#" class="fw-light nav-link fs-6"> <span class="fas fa-comment me-1"> </span> {{ $user->comments()->count() }} </a>
+                <a href="#" class="fw-light nav-link fs-6 me-3"> <span class="fas fa-user me-1">
+                    </span> 0 Followers </a>
+                <a href="#" class="fw-light nav-link fs-6 me-3"> <span class="fas fa-brain me-1">
+                    </span> {{$user->ideas()->count()}} </a>
+                <a href="#" class="fw-light nav-link fs-6"> <span class="fas fa-comment me-1">
+                    </span> {{$user->comments()->count()}} </a>
             </div>
             @if(auth()->id() !== $user->id)
             <div class="mt-3">
-                <button class="btn btn-primary btn-sm">Follow</button>
+                <button class="btn btn-primary btn-sm"> Follow </button>
             </div>
             @endif
         </div>
     </div>
 </div>
+
