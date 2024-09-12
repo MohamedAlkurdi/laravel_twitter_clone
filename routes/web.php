@@ -25,6 +25,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show')->middleware('auth');
 Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit')->middleware('auth');
 Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update')->middleware('auth');
+Route::get('/profile', [UserController::class, 'profile'])->name('profile')->middleware('auth');
+
 
 // Route::resource('idea', ideaController::class)->except(['index','create','show'])->middleware('auth');
 

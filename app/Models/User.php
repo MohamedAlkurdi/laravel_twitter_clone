@@ -40,8 +40,11 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
+            'name',
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'bio',
+            'image',
         ];
     }
 
