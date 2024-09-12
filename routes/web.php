@@ -5,6 +5,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ideaController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/',[DashboardController::class, 'index'])->name('dashboard');
@@ -20,6 +21,10 @@ Route::post('/register', [AuthController::class, 'store']);
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'authenticate']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show')->middleware('auth');
+Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit')->middleware('auth');
+Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update')->middleware('auth');
 
 // Route::resource('idea', ideaController::class)->except(['index','create','show'])->middleware('auth');
 
