@@ -20,6 +20,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'bio',
+        'image',
     ];
 
     /**
@@ -54,5 +56,12 @@ class User extends Authenticatable
 
     public function comments(){
         return $this->hasMany(Comment::class)->orderBy("created_at",'DESC');
+    }
+
+    public function getImageUrl(){
+        if($this->image){
+            return url('storage/'. $this->image) ;
+        }
+        return "https://api.dicebear.com/6.x/fun-emoji/svg?seed={{$this->name}}";
     }
 }
