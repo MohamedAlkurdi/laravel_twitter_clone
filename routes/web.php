@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\ideaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -26,6 +27,9 @@ Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show')->
 Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit')->middleware('auth');
 Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update')->middleware('auth');
 Route::get('/profile', [UserController::class, 'profile'])->name('profile')->middleware('auth');
+
+Route::post('users/{user}/follow', [FollowerController::class ,'follow'])->name('users.follow')->middleware('auth');
+Route::post('users/{user}/unfollow', [FollowerController::class ,'unfollow'])->name('users.unfollow')->middleware('auth');
 
 
 // Route::resource('idea', ideaController::class)->except(['index','create','show'])->middleware('auth');

@@ -42,11 +42,7 @@
                 <a href="#" class="fw-light nav-link fs-6"> <span class="fas fa-comment me-1">
                     </span> {{$user->comments()->count()}} </a>
             </div>
-            @if(auth()->id() !== $user->id)
-            <div class="mt-3">
-                <button class="btn btn-primary btn-sm"> Follow </button>
-            </div>
-            @endif
+
         </div>
         </form>
     </div>

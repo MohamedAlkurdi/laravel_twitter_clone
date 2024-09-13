@@ -58,10 +58,23 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class)->orderBy("created_at",'DESC');
     }
 
+    public function followings(){
+        return $this->belongsToMany(User::class, 'follower_user','follower_id', 'user_id' )->withTimestamps();
+    }
+
+    public function followers(){
+        return $this->belongsToMany(User::class, 'follower_user','user_id','follower_id' )->withTimestamps();
+    }
+
+    public function follows($id){
+        return $this->followings()->where('user_id',$id)->exists();
+    }
+
     public function getImageUrl(){
         if($this->image){
             return url('storage/'. $this->image) ;
         }
         return "https://api.dicebear.com/6.x/fun-emoji/svg?seed={{$this->name}}";
     }
+
 }
