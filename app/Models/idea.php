@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Idea extends Model
 {
     use HasFactory;
+    protected $with = [
+        "user",
+        "comments.user",
+    ];
 
     protected $fillable = [
         'content',
@@ -17,7 +21,7 @@ class Idea extends Model
 
     public function comments(){
         return $this->hasMany(Comment::class, 'idea_id');
-    } 
+    }
 
     public function user(){
         return $this->belongsTo(User::class);
